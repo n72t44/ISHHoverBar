@@ -197,7 +197,12 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     [self.layer addSublayer:shadowLayer];
 
     // add visual effects view as background
-    UIVisualEffectView *bgView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
+    UIVisualEffectView *bgView;
+    if (@available(iOS 13.0, *)) {
+        bgView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemMaterial]];
+    } else {
+        bgView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
+    }    
     [self setBackgroundView:bgView];
     [self addSubview:bgView];
 
